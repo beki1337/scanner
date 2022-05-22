@@ -56,6 +56,18 @@ while True:
         dema2 = float(stocksToDay[key][-1])
         if dema > dema1 > dema2:
           print('buy')
+          response = requests.post('https://belmin.pythonanywhere.com/predictions/',json = {
+             "ticket": key,
+             "date": fullDate,
+             "price": stocksToDay[key][0],
+             "diraction": "CALL"
+             })
         elif dema < dema1 < dema2:
             print('sell')
+            response = requests.post('https://belmin.pythonanywhere.com/predictions/',json = {
+               "ticket": key,
+               "date": fullDate,
+               "price": stocksToDay[key][0],
+               "diraction": "PUT"
+               })
   time.sleep(60*60)
